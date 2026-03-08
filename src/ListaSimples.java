@@ -1,4 +1,4 @@
-public class ListaSimples {
+public class ListaSimples implements ListaOperacoes {
     String [] lista;
     public ListaSimples(int tamanho) {
         this.lista = new String[tamanho];
@@ -35,7 +35,7 @@ public class ListaSimples {
         int i;
         for (i = 0; i < this.lista.length; i++) {
             if(this.lista[i] == null) {
-               break;
+                break;
             }
         }
         return i;
@@ -78,5 +78,121 @@ public class ListaSimples {
         } else {
             System.out.println("O elemento " + elemento + " não existe na lista.");
         }
+    }
+
+    @Override
+    public int removerTodas(String elemento) {
+        for(int i = 0; i < this.lista.length; i++) {
+            if(this.lista[i].equals(elemento)) {
+                this.lista[i] = null;
+            }
+        }
+        System.out.println("Todos os elementos " + elemento + " foram removidos.");
+        return 0;
+    }
+
+    @Override
+    public int contar() {
+        int cont = 0;
+        for (int i = 0; i < this.lista.length; i++) {
+            if(this.lista[i] != null && this.lista[i] != "") {
+                cont += 1;
+            }
+        }
+        System.out.println("A quantidade de elementos é: " + cont);
+        return cont;
+    }
+
+    @Override
+    public int adicionarVarios(String[] elementos) {
+        int adicionados = 0;
+
+        for (int i = 0; i < elementos.length; i++) {
+            if (!estaCheia()) {
+                this.lista[encontrarPosicao()] = elementos[i];
+                adicionados++;
+            } else {
+                break;
+            }
+        }
+
+        return adicionados;
+    }
+
+    @Override
+    public String obter(int indice) {
+        if (indice < 0 || indice >= this.lista.length) {
+            return null;
+        }
+        return this.lista[indice];
+    }
+
+
+    @Override
+    public boolean inserir(int indice, String elemento) {
+        if (indice < 0 || indice >= this.lista.length || estaCheia()) {
+            return false;
+        }
+
+        for (int i = this.lista.length - 1; i > indice; i--) {
+            this.lista[i] = this.lista[i - 1];
+        }
+
+        this.lista[indice] = elemento;
+        return true;
+    }
+
+    @Override
+    public String removerPorIndice(int indice) {
+        for(int i = 0; i < this.lista.length; i++) {
+            if(i == indice) {
+                this.lista[i] = null;
+            }
+        }
+        return "";
+    }
+
+    @Override
+    public void limpar() {
+        if(!estaVazia()) {
+            for(int i = 0; i < this.lista.length; i++) {
+                this.lista[i] = null;
+            }
+        }
+        System.out.println("Lista esvaziada");
+    }
+
+    @Override
+    public int ultimoIndiceDe(String elemento) {
+        int cont = 0;
+        for(int i = 0; i < this.lista.length; i++) {
+            if(this.lista[i].equals(elemento)) {
+                cont += 1;
+            }
+        }
+        System.out.println("A quantidade de vezes que o elemento aparece é: " + cont);
+        return 0;
+    }
+
+    @Override
+    public int contarOcorrencias(String elemento) {
+        int cont = 0;
+        for(int i = 0; i < this.lista.length; i++) {
+            if(this.lista[i].equals(elemento)) {
+                cont += 1;
+            }
+        }
+        System.out.println("O elemento aparece " + cont + " vez(es) na lista ");
+        return 0;
+    }
+
+    @Override
+    public int substituir(String antigo, String novo) {
+        for(int i = 0; i < this.lista.length; i++) {
+            if(this.lista[i].equals(antigo)) {
+                this.lista[i] = novo;
+            }
+        }
+        return 0;
     }
 }
