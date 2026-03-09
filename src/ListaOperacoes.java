@@ -54,6 +54,7 @@ public interface ListaOperacoes {
      */
     String obter(int indice);
 
+
     /**
      * Insere um elemento em uma posição específica da lista.
      *
