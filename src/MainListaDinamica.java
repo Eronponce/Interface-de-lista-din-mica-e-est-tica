@@ -11,7 +11,16 @@ public class MainListaDinamica {
         listaDinamica.adicionarElemento("Cebola");
         System.out.println(listaDinamica.removerTodas("alho"));
         System.out.println("Existem " + listaDinamica.contar() + " elementos");
+        System.out.println("===========================================");
+        listaDinamica.exibir();
         System.out.println("Foram adicionados " + listaDinamica.adicionarVarios(elementos) + " elementos");
+        listaDinamica.exibir();
+        System.out.println("==================================================");
         System.out.println(listaDinamica.obter(10));
+        System.out.println("==================================================");
+        listaDinamica.exibir();
+        listaDinamica.inserir(1,"sla");
+        listaDinamica.exibir();
+        System.out.println("==================================================");
     }
 }
